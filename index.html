@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atelie Muniz | Marinei Vende</title>
+    <meta
+      name="description"
+      content="Loja online de presentes bordados com catalogo, carrinho e checkout preparado para pagamento por cartao."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Atelie Muniz">
+        <span class="brand-mark">AM</span>
+        <span>
+          <strong>Atelie Muniz</strong>
+          <small>Marinei Vende</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Menu principal">
+        <a href="#catalogo">Produtos</a>
+        <a href="#medidas">Encomendas</a>
+        <a href="#confianca">Confiança</a>
+        <a href="#checkout">Checkout</a>
+      </nav>
+
+      <button class="cart-button" type="button" data-open-cart>
+        Carrinho
+        <span data-cart-count>0</span>
+      </button>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Marinei Vende</p>
+          <h1>Atelie Muniz: presentes bordados para encantar.</h1>
+          <p>
+            Toalhas, panos de prato e kits personalizados com embalagem pronta
+            para presentear. Catalogo preparado para vendas online.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#catalogo">Ver produtos</a>
+            <a class="secondary-action" href="#checkout">Finalizar compra</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" aria-label="Diferenciais">
+        <div>
+          <strong>Presentes bordados</strong>
+          <span>Produtos prontos, kits e encomendas especiais.</span>
+        </div>
+        <div>
+          <strong>Pagamento seguro</strong>
+          <span>Preparado para checkout Kirvano, Pix e cartao.</span>
+        </div>
+        <div>
+          <strong>Atendimento direto</strong>
+          <span>Personalizacao combinada pelo WhatsApp.</span>
+        </div>
+      </section>
+
+      <section class="section-heading" id="catalogo">
+        <p class="eyebrow">Produtos</p>
+        <h2>Escolha seu presente</h2>
+      </section>
+
+      <section class="toolbar" aria-label="Filtros do catalogo">
+        <label>
+          Buscar
+          <input data-search type="search" placeholder="Toalha, pano de prato, kit..." />
+        </label>
+        <label>
+          Categoria
+          <select data-category>
+            <option value="todos">Todas</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="product-grid" data-products aria-live="polite"></section>
+
+      <section class="info-band" id="medidas">
+        <div>
+          <p class="eyebrow">Encomendas</p>
+          <h2>Produtos com carinho, bordado e embalagem especial.</h2>
+        </div>
+        <p>
+          Os produtos podem ser vendidos prontos ou personalizados com nome,
+          inicial e cores escolhidas. O carrinho ja calcula por quantidade.
+        </p>
+      </section>
+
+      <section class="trust-strip" id="confianca" aria-label="Informacoes de confianca">
+        <div>
+          <strong>Feito sob encomenda</strong>
+          <span>Nome, inicial e cores escolhidas com cuidado.</span>
+        </div>
+        <div>
+          <strong>Embalagem para presente</strong>
+          <span>Produtos pensados para surpreender.</span>
+        </div>
+        <div>
+          <strong>Pagamento facilitado</strong>
+          <span>Checkout Kirvano preparado para Pix e cartao.</span>
+        </div>
+        <div>
+          <strong>Envio combinado</strong>
+          <span>Atendimento antes e depois do pedido.</span>
+        </div>
+      </section>
+
+      <section class="checkout" id="checkout">
+        <div class="section-heading">
+          <p class="eyebrow">Checkout</p>
+          <h2>Resumo e pagamento</h2>
+        </div>
+
+        <div class="checkout-layout">
+          <div class="cart-panel">
+            <h3>Seu carrinho</h3>
+            <div data-cart-items class="cart-items"></div>
+            <div class="cart-total">
+              <span>Total</span>
+              <strong data-cart-total>R$ 0,00</strong>
+            </div>
+          </div>
+
+          <form class="payment-form" data-checkout-form>
+            <h3>Dados para pedido</h3>
+            <p class="checkout-note">
+              Para compra direta, use o botao Comprar agora em cada produto.
+              Este formulario fica como apoio para pedidos personalizados.
+            </p>
+            <label>
+              Nome completo
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>
+              E-mail
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              Telefone
+              <input name="phone" autocomplete="tel" required />
+            </label>
+            <label>
+              Endereco de entrega
+              <textarea name="address" rows="3" required></textarea>
+            </label>
+
+            <div class="payment-box">
+              <strong>Pagamento online</strong>
+              <p>
+                O site esta preparado para receber os links de checkout da
+                Kirvano. Assim o pagamento acontece em ambiente seguro.
+              </p>
+              <div id="card-payment-element" class="payment-placeholder">
+                Checkout Kirvano sera conectado aos botoes dos produtos
+              </div>
+            </div>
+
+            <button class="primary-action wide" type="submit">Enviar pedido</button>
+            <p class="form-message" data-form-message role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+      <div class="cart-drawer-header">
+        <h2>Carrinho</h2>
+        <button type="button" data-close-cart aria-label="Fechar carrinho">x</button>
+      </div>
+      <div data-cart-items-drawer class="cart-items"></div>
+      <div class="cart-total">
+        <span>Total</span>
+        <strong data-cart-total-drawer>R$ 0,00</strong>
+      </div>
+      <a class="primary-action wide" href="#checkout" data-close-cart>Ir para checkout</a>
+    </aside>
+    <div class="overlay" data-overlay></div>
+
+    <a class="whatsapp-float" href="#" data-whatsapp-link target="_blank" rel="noopener">
+      Falar no WhatsApp
+    </a>
+
+    <footer class="footer">
+      <div>
+        <strong>Atelie Muniz</strong>
+        <span>Presentes bordados personalizados por Marinei.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#catalogo">Produtos</a>
+        <a href="#medidas">Encomendas</a>
+        <a href="#" data-whatsapp-link target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <span class="credit">Produzido por Wally Silva</span>
+    </footer>
+
+    <script src="api-config.js"></script>
+    <script src="payment-gateway.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

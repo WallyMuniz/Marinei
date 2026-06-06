@@ -1,0 +1,4 @@
+*.zip
+PUBLICAR-*/
+server-*.log
+iniciar-site.bat

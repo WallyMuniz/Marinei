@@ -149,7 +149,7 @@ function renderProducts() {
             <p>${currency.format(product.price)} / ${product.unit}</p>
           </div>
           <div class="product-actions">
-            <button type="button" data-buy-product="${product.id}">Comprar agora</button>
+            <button type="button" data-buy-product="${product.id}">Pagar com Mercado Pago</button>
             <button class="ghost-button" type="button" data-add-product="${product.id}">Carrinho</button>
           </div>
         </article>
@@ -183,8 +183,9 @@ function buyProduct(productId) {
     return;
   }
 
-  const message = `Ola, vim pelo site do Atelie Muniz e quero comprar: ${product.name}.`;
-  window.open(getWhatsappUrl(message), "_blank", "noopener");
+  window.alert(
+    `Link do Mercado Pago ainda nao configurado para: ${product.name}.`
+  );
 }
 
 function updateQuantity(productId, quantity) {

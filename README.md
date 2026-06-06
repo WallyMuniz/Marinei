@@ -31,7 +31,8 @@ Depois, no GitHub:
 6. Salve.
 
 O GitHub Pages nao executa backend/API. Por isso, para pagamento com Mercado
-Pago nesse modo, use links de pagamento em `checkoutLinks`.
+Pago nesse modo, use links de pagamento em `checkoutLinks`. O WhatsApp fica
+apenas para atendimento e personalizacao.
 
 ## Onde configurar a API
 
@@ -86,7 +87,7 @@ O endpoint `GET /products` deve retornar uma lista assim:
 
 Para deploy manual por ZIP no Netlify, o caminho recomendado e usar links de
 pagamento do Mercado Pago em `checkoutLinks`. Assim o cliente clica em
-`Comprar agora` e vai direto para o checkout seguro do Mercado Pago.
+`Pagar com Mercado Pago` e vai direto para o checkout seguro do Mercado Pago.
 
 ## API no Netlify
 

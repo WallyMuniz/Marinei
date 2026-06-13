@@ -149,8 +149,8 @@ function renderProducts() {
             <p>${currency.format(product.price)} / ${product.unit}</p>
           </div>
           <div class="product-actions">
-            <button type="button" data-buy-product="${product.id}">Pagar com Mercado Pago</button>
-            <button class="ghost-button" type="button" data-add-product="${product.id}">Carrinho</button>
+            <button type="button" data-add-product="${product.id}">Adicionar ao pedido</button>
+            <button class="ghost-button" type="button" data-view-cart>Ver carrinho</button>
           </div>
         </article>
       `
@@ -171,21 +171,6 @@ function addToCart(productId) {
 
   saveCart();
   renderCart();
-}
-
-function buyProduct(productId) {
-  const product = products.find((item) => item.id === productId);
-  if (!product) return;
-
-  const checkoutUrl = config.checkoutLinks?.[productId];
-  if (checkoutUrl) {
-    window.location.href = checkoutUrl;
-    return;
-  }
-
-  window.alert(
-    `Link do Mercado Pago ainda nao configurado para: ${product.name}.`
-  );
 }
 
 function updateQuantity(productId, quantity) {
@@ -256,7 +241,7 @@ async function createPayment(order) {
     return {
       demo: true,
       message:
-        "Pedido validado. Configure api-config.js para enviar pedidos e processar cartao.",
+        "Pedido validado. O envio principal acontece pelo WhatsApp.",
     };
   }
 
@@ -291,11 +276,39 @@ function getCheckoutPayload(formData) {
   };
 }
 
+function getOrderMessage(order) {
+  const productLines = order.items
+    .map(
+      (item) =>
+        `- ${item.quantity}x ${item.name} (${currency.format(item.price)} cada)`
+    )
+    .join("\n");
+
+  return [
+    "Novo pedido - Atelie Muniz",
+    "",
+    "Cliente:",
+    `Nome: ${order.customer.name}`,
+    `Email: ${order.customer.email}`,
+    `Telefone: ${order.customer.phone}`,
+    "",
+    "Entrega:",
+    order.customer.address,
+    "",
+    "Produtos:",
+    productLines,
+    "",
+    `Total: ${currency.format(order.total)}`,
+    "",
+    "Pode confirmar prazo, entrega e forma de pagamento?",
+  ].join("\n");
+}
+
 productGrid.addEventListener("click", (event) => {
   const addButton = event.target.closest("[data-add-product]");
-  const buyButton = event.target.closest("[data-buy-product]");
+  const viewCartButton = event.target.closest("[data-view-cart]");
   if (addButton) addToCart(addButton.dataset.addProduct);
-  if (buyButton) buyProduct(buyButton.dataset.buyProduct);
+  if (viewCartButton) openCart();
 });
 
 document.addEventListener("input", (event) => {
@@ -320,19 +333,10 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  formMessage.textContent = "Enviando pedido...";
-
-  try {
-    const payload = getCheckoutPayload(new FormData(form));
-    const result = await createPayment(payload);
-    if (result.checkoutUrl) {
-      window.location.href = result.checkoutUrl;
-      return;
-    }
-    formMessage.textContent = result.message || "Pedido enviado com sucesso.";
-  } catch (error) {
-    formMessage.textContent = error.message;
-  }
+  const payload = getCheckoutPayload(new FormData(form));
+  const message = getOrderMessage(payload);
+  window.open(getWhatsappUrl(message), "_blank", "noopener");
+  formMessage.textContent = "Pedido pronto no WhatsApp. Confira a mensagem e envie.";
 });
 
 setupContactLinks();

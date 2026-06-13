@@ -1,8 +1,8 @@
 # Atelie Muniz
 
-Site estatico para venda de presentes bordados, com catalogo, busca, carrinho,
-checkout e integracao preparada para API e pagamento online. Marca configurada
-como `Atelie Muniz` com assinatura `Marinei Vende`.
+Site estatico para venda de presentes bordados, com catalogo, busca, carrinho e
+pedido enviado pelo WhatsApp. Marca configurada como `Atelie Muniz` com
+assinatura `Marinei Vende`.
 
 ## Como abrir
 
@@ -31,8 +31,8 @@ Depois, no GitHub:
 6. Salve.
 
 O GitHub Pages nao executa backend/API. Por isso, para pagamento com Mercado
-Pago nesse modo, use links de pagamento em `checkoutLinks`. O WhatsApp fica
-apenas para atendimento e personalizacao.
+Pago nesse modo, use links de pagamento em `checkoutLinks`. Na versao atual,
+o carrinho e enviado pelo WhatsApp para confirmar entrega e pagamento.
 
 ## Onde configurar a API
 
@@ -83,11 +83,11 @@ O endpoint `GET /products` deve retornar uma lista assim:
 ]
 ```
 
-## Pagamento com Mercado Pago
+## Pedido pelo WhatsApp
 
-Para deploy manual por ZIP no Netlify, o caminho recomendado e usar links de
-pagamento do Mercado Pago em `checkoutLinks`. Assim o cliente clica em
-`Pagar com Mercado Pago` e vai direto para o checkout seguro do Mercado Pago.
+Na versao atual, o cliente adiciona produtos ao carrinho, preenche os dados de
+entrega e clica em `Enviar pedido`. O site abre o WhatsApp da loja com a lista
+de produtos, quantidades, total e endereco.
 
 ## API no Netlify
 
